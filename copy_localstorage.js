@@ -1,5 +1,5 @@
-// Cross-Domain localStorage Manager
-// This creates a popup to help you copy data between domains
+// localStorage Transfer Helper
+// Opens an in-page panel for exporting and importing localStorage during debugging and QA.
 
 // Create the interface
 const container = document.createElement('div');
@@ -11,7 +11,7 @@ container.style.cssText = `
 `;
 
 const title = document.createElement('h3');
-title.textContent = 'Cross-Domain localStorage Manager';
+title.textContent = 'localStorage Transfer Helper';
 title.style.cssText = 'margin: 0 0 15px 0; color: #4fc3f7;';
 container.appendChild(title);
 
@@ -19,7 +19,7 @@ container.appendChild(title);
 const currentDomain = document.createElement('div');
 currentDomain.style.cssText = 'background: #2a2a2a; padding: 10px; border-radius: 5px; margin-bottom: 15px;';
 currentDomain.innerHTML = `
-  <strong>Current Domain:</strong><br>
+  <strong>Current Page Origin:</strong><br>
   <span style="color: #4caf50;">${window.location.origin}</span><br>
   <small>Keys found: ${localStorage.length}</small>
 `;
@@ -56,7 +56,7 @@ const importSection = document.createElement('div');
 importSection.style.cssText = 'border-top: 1px solid #333; padding-top: 15px;';
 
 const importTitle = document.createElement('h4');
-importTitle.textContent = 'Import Data';
+importTitle.textContent = 'Import JSON Data';
 importTitle.style.cssText = 'margin: 0 0 10px 0; color: #ff9800;';
 importSection.appendChild(importTitle);
 
@@ -70,7 +70,7 @@ importTextarea.style.cssText = `
 importSection.appendChild(importTextarea);
 
 const importBtn = document.createElement('button');
-importBtn.textContent = 'Import Data to This Domain';
+importBtn.textContent = 'Import Data to This Origin';
 importBtn.style.cssText = `
   width: 100%; background: #2196f3; color: white; border: none; padding: 10px;
   border-radius: 5px; cursor: pointer; font-weight: bold;
@@ -89,7 +89,7 @@ importBtn.addEventListener('click', () => {
     importBtn.style.background = '#4caf50';
     
     setTimeout(() => {
-      importBtn.textContent = 'Import Data to This Domain';
+      importBtn.textContent = 'Import Data to This Origin';
       importBtn.style.background = '#2196f3';
     }, 3000);
     
@@ -98,7 +98,7 @@ importBtn.addEventListener('click', () => {
     importBtn.textContent = '✗ Invalid JSON data';
     importBtn.style.background = '#f44336';
     setTimeout(() => {
-      importBtn.textContent = 'Import Data to This Domain';
+      importBtn.textContent = 'Import Data to This Origin';
       importBtn.style.background = '#2196f3';
     }, 3000);
   }
